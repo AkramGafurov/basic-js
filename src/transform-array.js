@@ -55,7 +55,9 @@ module.exports = function transform(arr) {
 }
 
 function delNext(index){
-  if(index<resArr.length){
+  if(index<resArr.length-1&&(resArr[index+2]=='--double-prev'||resArr[index+2]=='--discard-prev')){
+    resArr.splice(index,3)
+  }else if(index<resArr.length){
     resArr.splice(index,2)
   }else{
     resArr.splice(index,1)
@@ -64,7 +66,7 @@ function delNext(index){
 
 function delPrev(index){
   if(index>0 && index<resArr.length){
-    resArr.splice(index,2)
+    resArr.splice(index-1,2)
   }else{
     resArr.splice(index,1)
   }
