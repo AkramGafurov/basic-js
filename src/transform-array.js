@@ -4,55 +4,9 @@ module.exports = function transform(arr) {
 
   if(!(arr instanceof Array)) throw('Error');
   
-  let resArr = arr;
+  let resArr = arr.slice();
  let i=0;
-  {// function discardNext(index){
-  //   if(index!==resArr.length-1){
-  //     resArr.splice(index,2)
-  //   } else{
-  //     resArr.splice(-1,1)
-  //   }
-  // }
 
-  // function discardPrev (index){
-  //     if(index!==0){
-  //       resArr.splice(index-1,2)
-  //     }else{
-  //       resArr.splice(0,1)
-  //     }
-  // }
-
-  // function doubleNext(index){
-  //   if(index!==resArr.length-1){
-  //     resArr.splice(index,1,resArr[index+1])
-  //   }else{
-  //     resArr.splice(-1,1)
-  // }
-  // }
-
-  // function doublePrev(index){  
-  //   if(index!==0){
-  //         resArr.splice(index,1,resArr[index-1])
-  //   }else{
-  //       resArr.splice(0,1)
-  //     }
-  // }
-
-  //  for(let i=0;i<arr.length;i++){
-  //   if(resArr[i]=='--discard-next'){
-  //     discardNext(i);
-  //   }else if(resArr[i]=='--discard-prev'){
-  //     console.log(resArr);
-  //     discardPrev(i);
-  //   }else if(resArr[i]=='--double-next'){
-  //     console.log(resArr);
-  //     doubleNext(i);
-  //   }else if(resArr[i]=='--double-prev'){
-  //     console.log(resArr);
-  //     doublePrev(i);
-  //   }
-  // }
-}
 
 function delNext(index){
   if(index<resArr.length-1&&(resArr[index+2]=='--double-prev'||resArr[index+2]=='--discard-prev')){
@@ -90,7 +44,7 @@ function doublePrev(index){
 }
 
 
-while (i < arr.length){
+while (i < resArr.length){
   if(resArr[i]=='--discard-next'){
     console.log(i)
     delNext(i);
